@@ -1,25 +1,98 @@
-import logo from './logo.svg';
-import './App.css';
+
+import Form from "./Composants/form/form";
+import Particles from "react-particles-js";
+import './App.css'
+import PhotoViewer from "./Composants/photoViewer/photoViewer";
+import React , {useState} from 'react';
+import Clarifai  from 'clarifai';
+import ColorViewer from "./Composants/colorViewer/colorViewer";
+import ColorPallete from "./Composants/colorPallete/colorPalete";
 
 function App() {
+    const [colorsData , setColorsData] = useState([]);
+    const [lien , setLien ] = useState("");
+    const [background , setBackground ] = useState(initialBackground);
+    const [showTitle , setShowtitle] = useState(true);
+    const lienTappe = (even)=>{
+        setLien(even.target.value);
+        if(even.target.value==='')
+        {
+            setShowtitle(true);
+            setBackground(initialBackground);
+            setColorsData([]);
+        }
+
+    }
+    const detecter = ()=>{
+        if(lien.includes("http")){
+            setShowtitle(false);
+            app.models
+                .predict(
+                    Clarifai.COLOR_MODEL,
+                    lien)
+                .then(
+                    response => {
+                        response.outputs[0].data.colors.length &&  setColorsData(response.outputs[0].data.colors);
+                        const colors = response.outputs[0].data.colors;
+                        let colorsString = `linear-gradient(to right top`;
+                        for (let color of colors) {
+                            colorsString = colorsString + `,${color.raw_hex}`
+                        }
+                        colorsString = colors.length > 1 ? colorsString + ")" : colorsString + ",#FFF)";
+                        setBackground(colorsString);
+                    }
+                )
+                .catch(err => console.log(err));
+        }
+    }
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className={'app container'}>
+        <div className={'row justify-content-center'}>
+            {colorsData.length &&  <ColorPallete colors={colorsData}/>}
+            <Particles className={"particles"} style={{backgroundImage : `${background}`}} params ={params}/>
+             <Form onChanged={lienTappe} onClicked={detecter} showTitle={showTitle}/>
+             <PhotoViewer src ={lien}/>
+        </div>
     </div>
   );
 }
 
 export default App;
+const   params={
+    "particles": {
+        "number": {
+            "value": 160,
+                "density": {
+                "enable": false
+            }
+        },
+        "size": {
+            "value": 10,
+                "random": true
+        },
+        "move": {
+            "direction": "bottom",
+                "out_mode": "out"
+        },
+        "line_linked": {
+            "enable": false
+        }
+    },
+    "interactivity": {
+        "events": {
+            "onclick": {
+                "enable": true,
+                    "mode": "remove"
+            }
+        },
+        "modes": {
+            "remove": {
+                "particles_nb": 10
+            }
+        }
+    }
+}
+const initialBackground = "linear-gradient(to right top, #051937, #004d7a, #008793, #00bf72, #a8eb12)";
+const app = new Clarifai.App({
+    apiKey: 'b60f714daecf470f8a53dc14d1fd1986'
+});

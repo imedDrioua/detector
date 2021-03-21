@@ -1,0 +1,5 @@
+.nav{
+    display : flex;
+    justify-content : flex-end;
+    background-color : #004d7a;
+}
