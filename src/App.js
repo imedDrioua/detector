@@ -5,8 +5,9 @@ import './App.css'
 import PhotoViewer from "./Composants/photoViewer/photoViewer";
 import React , {useState} from 'react';
 import Clarifai  from 'clarifai';
-import ColorViewer from "./Composants/colorViewer/colorViewer";
 import ColorPallete from "./Composants/colorPallete/colorPalete";
+import {Switch , Route} from 'react-router-dom';
+import Sign from "./Composants/Sign/Sign";
 
 function App() {
     const [colorsData , setColorsData] = useState([]);
@@ -45,16 +46,27 @@ function App() {
                 .catch(err => console.log(err));
         }
     }
-  return (
-    <div className={'app container'}>
-        <div className={'row justify-content-center'}>
-            {colorsData.length &&  <ColorPallete colors={colorsData}/>}
-            <Particles className={"particles"} style={{backgroundImage : `${background}`}} params ={params}/>
-             <Form onChanged={lienTappe} onClicked={detecter} showTitle={showTitle}/>
-             <PhotoViewer src ={lien}/>
-        </div>
-    </div>
-  );
+    return (
+
+        <Switch>
+            <div className={'app container'}>
+                <Particles className={"particles"} style={{backgroundImage : `${background}`}} params ={params}/>
+                <Route path={"/sign"}>
+                    <Sign />
+                </Route>
+                <Route exact path={"/"}>
+
+                    <div className={'row justify-content-center'}>
+                        {colorsData.length &&  <ColorPallete colors={colorsData}/>}
+                        <Form onChanged={lienTappe} onClicked={detecter} showTitle={showTitle}/>
+                        <PhotoViewer src ={lien}/>
+
+                    </div>
+                </Route>
+            </div>
+        </Switch>
+
+    );
 }
 
 export default App;
@@ -62,17 +74,17 @@ const   params={
     "particles": {
         "number": {
             "value": 160,
-                "density": {
+            "density": {
                 "enable": false
             }
         },
         "size": {
             "value": 10,
-                "random": true
+            "random": true
         },
         "move": {
             "direction": "bottom",
-                "out_mode": "out"
+            "out_mode": "out"
         },
         "line_linked": {
             "enable": false
@@ -82,7 +94,7 @@ const   params={
         "events": {
             "onclick": {
                 "enable": true,
-                    "mode": "remove"
+                "mode": "remove"
             }
         },
         "modes": {
