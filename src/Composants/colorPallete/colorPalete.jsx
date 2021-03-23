@@ -4,7 +4,7 @@ import "./colorPallete.css"
 
 function ColorPallete({colors}){
     return(
-        <div className={'row justify-content-center pallete border border-info rounded-pill '} >
+        <div className={'row justify-content-center  pallete border border-info '} >
             <h4>Les couleurs detectés</h4>
             {
                 colors.map(color =>{

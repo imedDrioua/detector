@@ -1,5 +1,13 @@
 .nav{
-    display : flex;
-    justify-content : flex-end;
-    background-color : #004d7a;
+    position:relative;
+    display: flex;
+    justify-content: flex-end;
+    top:0;
+    right:0;
+    left: 0;
+    background-color : transparent;
+}
+button{
+    font-family: "Pacifico",  serif;
+    letter-spacing : 2px;
 }

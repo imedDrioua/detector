@@ -5,7 +5,7 @@ import logo from '../../../images/logo.png';
 import {Link} from 'react-router-dom'
 function SignUP(){
     return(<div className={"d-flex justify-content-center"}>
-        <form>
+        <form className={"sign"}>
             <Tilt className="Tilt  mb-3 logo" options={{ max : 55 ,scale :1.5 ,speed:10 }} style={{ height: "150px", width: "250px" }} >
                 <div className="Tilt-inner"> <img src={logo} alt={"error"}/> </div>
             </Tilt>

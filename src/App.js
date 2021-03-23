@@ -9,6 +9,7 @@ import ColorPallete from "./Composants/colorPallete/colorPalete";
 import {Switch , Route} from 'react-router-dom';
 import SignIn from "./Composants/Sign/Sign-in/SignIn";
 import SignUP from "./Composants/Sign/Sign-up/SignUP";
+import Navigation from "./Composants/navigation/nav";
 
 function App() {
     const [colorsData , setColorsData] = useState([]);
@@ -50,13 +51,14 @@ function App() {
     return (
 
         <Switch>
-            <div className={'app container'}>
+x            <div className={'app '}>
                 <Particles className={"particles"} style={{backgroundImage : `${background}`}} params ={params}/>
                 <Route exact path={"/"}>
                     <SignIn/>
                 </Route>
-                <Route  path={"/home"}>
-                    <div className={'row justify-content-center'}>
+                <Route exact path={"/home"}>
+                    <Navigation/>
+                    <div className={'form row justify-content-center'}>
                         {colorsData.length !== 0  &&  <ColorPallete colors={colorsData}/>}
                         <Form onChanged={lienTappe} onClicked={detecter} showTitle={showTitle}/>
                         <PhotoViewer src ={lien}/>
