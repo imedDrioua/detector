@@ -7,7 +7,8 @@ import React , {useState} from 'react';
 import Clarifai  from 'clarifai';
 import ColorPallete from "./Composants/colorPallete/colorPalete";
 import {Switch , Route} from 'react-router-dom';
-import Sign from "./Composants/Sign/Sign";
+import SignIn from "./Composants/Sign/Sign-in/SignIn";
+import SignUP from "./Composants/Sign/Sign-up/SignUP";
 
 function App() {
     const [colorsData , setColorsData] = useState([]);
@@ -51,17 +52,18 @@ function App() {
         <Switch>
             <div className={'app container'}>
                 <Particles className={"particles"} style={{backgroundImage : `${background}`}} params ={params}/>
-                <Route path={"/sign"}>
-                    <Sign />
-                </Route>
                 <Route exact path={"/"}>
-
+                    <SignIn/>
+                </Route>
+                <Route  path={"/home"}>
                     <div className={'row justify-content-center'}>
-                        {colorsData.length &&  <ColorPallete colors={colorsData}/>}
+                        {colorsData.length !== 0  &&  <ColorPallete colors={colorsData}/>}
                         <Form onChanged={lienTappe} onClicked={detecter} showTitle={showTitle}/>
                         <PhotoViewer src ={lien}/>
-
                     </div>
+                </Route>
+                <Route exact path={"/signup"}>
+                    <SignUP/>
                 </Route>
             </div>
         </Switch>
