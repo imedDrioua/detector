@@ -7,8 +7,7 @@ import React , {useState} from 'react';
 import Clarifai  from 'clarifai';
 import ColorPallete from "./Composants/colorPallete/colorPalete";
 import {Switch , Route} from 'react-router-dom';
-import SignIn from "./Composants/Sign/Sign-in/SignIn";
-import SignUP from "./Composants/Sign/Sign-up/SignUP";
+import Sign from "./Composants/Sign/Sign";
 import Navigation from "./Composants/navigation/nav";
 
 function App() {
@@ -54,7 +53,7 @@ function App() {
 x            <div className={'app '}>
                 <Particles className={"particles"} style={{backgroundImage : `${background}`}} params ={params}/>
                 <Route exact path={"/"}>
-                    <SignIn/>
+                    <Sign up={false}/>
                 </Route>
                 <Route exact path={"/home"}>
                     <Navigation/>
@@ -65,7 +64,7 @@ x            <div className={'app '}>
                     </div>
                 </Route>
                 <Route exact path={"/signup"}>
-                    <SignUP/>
+                    <Sign up={true}/>
                 </Route>
             </div>
         </Switch>
