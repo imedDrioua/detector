@@ -15,6 +15,7 @@ function App() {
     const [lien , setLien ] = useState("");
     const [background , setBackground ] = useState(initialBackground);
     const [showTitle , setShowtitle] = useState(true);
+
     const lienTappe = (even)=>{
         setLien(even.target.value);
         if(even.target.value==='')
@@ -48,10 +49,9 @@ function App() {
         }
     }
     return (
-
-        <Switch>
-x            <div className={'app '}>
+         <div className={'app '}>
                 <Particles className={"particles"} style={{backgroundImage : `${background}`}} params ={params}/>
+                <Switch>
                 <Route exact path={"/"}>
                     <Sign up={false}/>
                 </Route>
@@ -66,9 +66,8 @@ x            <div className={'app '}>
                 <Route exact path={"/signup"}>
                     <Sign up={true}/>
                 </Route>
+                </Switch>
             </div>
-        </Switch>
-
     );
 }
 

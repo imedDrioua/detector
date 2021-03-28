@@ -3,6 +3,8 @@ import Tilt from 'react-tilt'
 import './sign.css'
 import logo from '../../images/logo.png';
 import {Link,Redirect} from 'react-router-dom'
+import {useSelector,useDispatch} from "react-redux";
+
 function Sign({up}){
     const [psudeo,setPsudeo] = useState('');
     const [email , setEmail ]=useState('');
@@ -11,6 +13,8 @@ function Sign({up}){
     const [error ,setError] = useState(false);
     const [logged , setLogged] = useState(false);
     const [found , setFound] = useState(true);
+    const user = useSelector(store => store.user);
+    const dispatch = useDispatch();
     const onEmailtappe = (even)=>{
         setEmail(even.target.value);
     }
@@ -54,7 +58,10 @@ function Sign({up}){
                 setLogged(data.logged);
                 setFound(data.user);
                 setError((data.user && ! data.logged));
-
+                dispatch({
+                    type : "ADD_USER",
+                    payload : data.user
+                })
             }
         );
     }
