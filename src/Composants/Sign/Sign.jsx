@@ -36,7 +36,7 @@ function Sign({up}){
         }).then(response=> response.json())
             .then(
                 data=> {
-                 data.user ? history.push("/home") : setError(true);
+                 data.user ? history.push("/dashboard") : setError(true);
                     dispatch({
                         type : "ADD_USER",
                         payload : data.user ?? null
@@ -61,14 +61,15 @@ function Sign({up}){
         }).then (response=>response.json()).then(data =>
             {
                 if(data.logged) {
-                    history.push("/home");
+                    history.push("/dashboard");
+                    dispatch({
+                        type : "ADD_USER",
+                        payload : data.user
+                    })
                 }else{
                     data.user ? setError(true) : setFound(false)
                 }
-                dispatch({
-                    type : "ADD_USER",
-                    payload : data.user
-                })
+
             }
         );
     }

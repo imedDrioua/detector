@@ -1,53 +1,14 @@
 
-import Form from "./Composants/form/form";
 import Particles from "react-particles-js";
-import './App.css'
-import PhotoViewer from "./Composants/photoViewer/photoViewer";
-import React , {useState} from 'react';
-import Clarifai  from 'clarifai';
-import ColorPallete from "./Composants/colorPallete/colorPalete";
+import './App.css';
+import React  from 'react';
 import {Switch , Route} from 'react-router-dom';
 import Sign from "./Composants/Sign/Sign";
-import Navigation from "./Composants/navigation/nav";
+import Dashboard from "./Composants/Dashboard/dashboard";
+import {useSelector} from "react-redux";
 
 function App() {
-    const [colorsData , setColorsData] = useState([]);
-    const [lien , setLien ] = useState("");
-    const [background , setBackground ] = useState(initialBackground);
-    const [showTitle , setShowtitle] = useState(true);
-
-    const lienTappe = (even)=>{
-        setLien(even.target.value);
-        if(even.target.value==='')
-        {
-            setShowtitle(true);
-            setBackground(initialBackground);
-            setColorsData([]);
-        }
-
-    }
-    const detecter = ()=>{
-        if(lien.includes("http")){
-            setShowtitle(false);
-            app.models
-                .predict(
-                    Clarifai.COLOR_MODEL,
-                    lien)
-                .then(
-                    response => {
-                        response.outputs[0].data.colors.length &&  setColorsData(response.outputs[0].data.colors);
-                        const colors = response.outputs[0].data.colors;
-                        let colorsString = `linear-gradient(to right top`;
-                        for (let color of colors) {
-                            colorsString = colorsString + `,${color.raw_hex}`
-                        }
-                        colorsString = colors.length > 1 ? colorsString + ")" : colorsString + ",#FFF)";
-                        setBackground(colorsString);
-                    }
-                )
-                .catch(err => console.log(err));
-        }
-    }
+    const background = useSelector(state => state.appThemeReducer.background);
     return (
          <div className={'app '}>
                 <Particles className={"particles"} style={{backgroundImage : `${background}`}} params ={params}/>
@@ -55,13 +16,8 @@ function App() {
                 <Route exact path={"/"}>
                     <Sign up={false}/>
                 </Route>
-                <Route exact path={"/home"}>
-                    <Navigation/>
-                    <div className={'form row justify-content-center'}>
-                        {colorsData.length !== 0  &&  <ColorPallete colors={colorsData}/>}
-                        <Form onChanged={lienTappe} onClicked={detecter} showTitle={showTitle}/>
-                        <PhotoViewer src ={lien}/>
-                    </div>
+                <Route exact path={"/dashboard"}>
+                  <Dashboard/>
                 </Route>
                 <Route exact path={"/signup"}>
                     <Sign up={true}/>
@@ -70,8 +26,6 @@ function App() {
             </div>
     );
 }
-
-export default App;
 const   params={
     "particles": {
         "number": {
@@ -106,7 +60,4 @@ const   params={
         }
     }
 }
-const initialBackground = "linear-gradient(to right top, #051937, #004d7a, #008793, #00bf72, #a8eb12)";
-const app = new Clarifai.App({
-    apiKey: 'b60f714daecf470f8a53dc14d1fd1986'
-});
+export default App;
