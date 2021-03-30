@@ -6,6 +6,7 @@ import {Switch , Route} from 'react-router-dom';
 import Sign from "./Composants/Sign/Sign";
 import Dashboard from "./Composants/Dashboard/dashboard";
 import {useSelector} from "react-redux";
+import ColorDetector from "./Composants/colorDetector/colorDetector";
 
 function App() {
     const background = useSelector(state => state.appThemeReducer.background);
@@ -16,9 +17,12 @@ function App() {
                 <Route exact path={"/"}>
                     <Sign up={false}/>
                 </Route>
-                <Route exact path={"/dashboard"}>
-                  <Dashboard/>
-                </Route>
+                    <Route path={"/bb"}>
+                        <ColorDetector/>
+                    </Route>
+                    <Route exact path={"/dashboard"}>
+                        <Dashboard/>
+                    </Route>
                 <Route exact path={"/signup"}>
                     <Sign up={true}/>
                 </Route>

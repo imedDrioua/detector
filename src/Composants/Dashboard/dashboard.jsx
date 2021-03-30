@@ -1,81 +1,59 @@
 import {Component} from 'react'
 import Navigation from "../navigation/nav";
-import ColorPallete from "../colorPallete/colorPalete";
-import Form from "../form/form";
-import PhotoViewer from "../photoViewer/photoViewer";
-import {connect} from "react-redux";
-import Clarifai from "clarifai";
-const app = new Clarifai.App({
-    apiKey: 'b60f714daecf470f8a53dc14d1fd1986'
-});
-
-
-const initialBackground = "linear-gradient(to right top, #051937, #004d7a, #008793, #00bf72, #a8eb12)";
-const mapDispatchToProps = (dispatch)=>{
-   return {
-        setBackground:(background) => dispatch({type : "SET_BACKGROUND",payload : background})
-    }
-}
 
 class Dashboard extends Component {
-    constructor(props){
-        super(props);
-        this.state={
-            colorsData : [],
-            lien : "",
-            background : initialBackground,
-            showTitle : true
-        }
-    }
-    lienTappe = (even)=>{
-        this.setState({lien : even.target.value});
-        if(even.target.value==='')
-        {
-            this.setState({lien : "",
-                        background : initialBackground,
-                        colorsData : [],
-                        showTitle : true
-            }
-                       );
-        }
 
-    }
-     detecter = ()=>{
-        const {lien} = this.state;
-        const {setBackground} = this.props;
-        if(lien.includes("http")){
-            this.setState({showTitle :false});
-            app.models
-                .predict(
-                    Clarifai.COLOR_MODEL,
-                    lien)
-                .then(
-                    response => {
-                        response.outputs[0].data.colors.length &&  this.setState({colorsData : response.outputs[0].data.colors});
-                        const colors = response.outputs[0].data.colors;
-                        let colorsString = `linear-gradient(to right top`;
-                        for (let color of colors) {
-                            colorsString = colorsString + `,${color.raw_hex}`
-                        }
-                        colorsString = colors.length > 1 ? colorsString + ")" : colorsString + ",#FFF)";
-                        setBackground(colorsString);
-                    }
-                )
-                .catch(err => console.log(err));
-        }
-    }
     render() {
-        const {colorsData,showTitle,lien} =this.state;
-        return(<div>
-            <Navigation/>
-        <div className={'form row justify-content-center'}>
-            {colorsData.length !== 0  &&  <ColorPallete colors={colorsData}/>}
-            <Form onChanged={this.lienTappe} onClicked={this.detecter} showTitle={showTitle}/>
-            <PhotoViewer src ={lien}/>
-        </div>
+        return(
+            <div>
+                <Navigation/>
+
+            <div className="row row-cols-1 row-cols-md-3 g-4">
+                <div className="col">
+                    <div className="card">
+                        <img src="..." className="card-img-top" alt="..." />
+                            <div className="card-body">
+                                <h5 className="card-title">Card title</h5>
+                                <p className="card-text">This is a longer card with supporting text below as a natural
+                                    lead-in to additional content. This content is a little bit longer.</p>
+                            </div>
+                    </div>
+                </div>
+                <div className="col">
+                    <div className="card">
+                        <img src="..." className="card-img-top" alt="..."/>
+                            <div className="card-body">
+                                <h5 className="card-title">Card title</h5>
+                                <p className="card-text">This is a longer card with supporting text below as a natural
+                                    lead-in to additional content. This content is a little bit longer.</p>
+                            </div>
+                    </div>
+                </div>
+                <div className="col">
+                    <div className="card">
+                        <img src="..." className="card-img-top" alt="..."/>
+                            <div className="card-body">
+                                <h5 className="card-title">Card title</h5>
+                                <p className="card-text">This is a longer card with supporting text below as a natural
+                                    lead-in to additional content.</p>
+                            </div>
+                    </div>
+                </div>
+                <div className="col">
+                    <div className="card">
+                        <img src="..." className="card-img-top" alt="..."/>
+                            <div className="card-body">
+                                <h5 className="card-title">Card title</h5>
+                                <p className="card-text">This is a longer card with supporting text below as a natural
+                                    lead-in to additional content. This content is a little bit longer.</p>
+                            </div>
+                    </div>
+                </div>
             </div>
+            </div>
+
         )
     }
 }
 
-export default connect(null,mapDispatchToProps)(Dashboard);
+export default Dashboard;

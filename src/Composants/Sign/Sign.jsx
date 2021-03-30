@@ -5,6 +5,8 @@ import logo from '../../images/logo.png';
 import {Link} from 'react-router-dom'
 import {useDispatch} from "react-redux";
 import {useHistory} from "react-router-dom"
+import ColorsLogo from "../logos/colorsLogo";
+
 
 function Sign({up}){
     const [psudeo,setPsudeo] = useState('');
@@ -36,11 +38,12 @@ function Sign({up}){
         }).then(response=> response.json())
             .then(
                 data=> {
-                 data.user ? history.push("/dashboard") : setError(true);
                     dispatch({
                         type : "ADD_USER",
                         payload : data.user ?? null
                     })
+                    data.user ? history.push("/dashboard") : setError(true);
+
                 }
             )
             .catch(err=>
@@ -61,11 +64,12 @@ function Sign({up}){
         }).then (response=>response.json()).then(data =>
             {
                 if(data.logged) {
-                    history.push("/dashboard");
                     dispatch({
                         type : "ADD_USER",
                         payload : data.user
                     })
+                    history.push("/dashboard");
+
                 }else{
                     data.user ? setError(true) : setFound(false)
                 }
@@ -76,9 +80,7 @@ function Sign({up}){
 
     return(<div className={"d-flex justify-content-center"}>
         <form className={"sign"} onSubmit={up ? signup : signin} >
-            <Tilt className="Tilt  mb-3 logo" options={{ max : 55 ,scale :1.5 ,speed:10 }} style={{ height: "150px", width: "250px" }} >
-                <div className="Tilt-inner"> <img src={logo} alt={"error"}/> </div>
-            </Tilt>
+            <ColorsLogo/>
             {(error && up) && <p style={{color : "red"}}>Something went wrong mother fucker</p>}
             {(error && !up)&& <p style={{color : "red"}}> Worng password you fucking stupid </p> }
             {found || <p style={{color : "red"}} >No user with this credintials go fuck your self </p>}
