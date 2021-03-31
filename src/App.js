@@ -6,7 +6,6 @@ import {Switch , Route} from 'react-router-dom';
 import Sign from "./Composants/Sign/Sign";
 import Dashboard from "./Composants/Dashboard/dashboard";
 import {useSelector} from "react-redux";
-import ColorDetector from "./Composants/colorDetector/colorDetector";
 
 function App() {
     const background = useSelector(state => state.appThemeReducer.background);
@@ -14,13 +13,10 @@ function App() {
          <div className={'app '}>
                 <Particles className={"particles"} style={{backgroundImage : `${background}`}} params ={params}/>
                 <Switch>
-                <Route exact path={"/"}>
+                <Route exact path={"/bb"}>
                     <Sign up={false}/>
                 </Route>
-                    <Route path={"/bb"}>
-                        <ColorDetector/>
-                    </Route>
-                    <Route exact path={"/dashboard"}>
+                    <Route exact path={"/"}>
                         <Dashboard/>
                     </Route>
                 <Route exact path={"/signup"}>

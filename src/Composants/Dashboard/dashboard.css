@@ -1,0 +1,15 @@
+.dashboard{
+     margin: 10% 25%;
+}
+.element{
+    box-shadow: 0 1rem 1rem black;
+    transition: all .2s ease-in-out;
+    opacity: 0.9;
+    background-color: beige}
+.elements .element:hover{
+    transform : scale(1.05) translateY(-10px) ;
+}
+.elements:hover .element:not(:hover) {
+    transform: scale(0.95);
+    box-shadow: 0 .3rem .3rem black;
+}
