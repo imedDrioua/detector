@@ -1,7 +1,5 @@
 import React,{useState} from 'react'
-import Tilt from 'react-tilt'
 import './sign.css'
-import logo from '../../images/logo.png';
 import {Link} from 'react-router-dom'
 import {useDispatch} from "react-redux";
 import {useHistory} from "react-router-dom"

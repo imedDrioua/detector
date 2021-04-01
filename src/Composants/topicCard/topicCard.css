@@ -6,4 +6,11 @@
     font-family: "Pacifico", serif ;
     font-weight: bold;
     font-size : 1.5em;
+    letter-spacing: 1px;
+}
+.element p{
+    font-family: "Palatino Linotype", serif ;
+    letter-spacing: 1px;
+    font-weight : bold;
+
 }

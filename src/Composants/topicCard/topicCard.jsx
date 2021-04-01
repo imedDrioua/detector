@@ -1,18 +1,20 @@
 import logo from "../../images/logo.png";
 import "./topicCard.css";
+import {useHistory , useRouteMatch} from "react-router-dom";
+const TopicCard = ({direction})=>{
+    const match = useRouteMatch();
+    const history= useHistory();
+    const clickHandling=()=>{
+     setTimeout(()=>{history.push(`${match.url}${direction}`)},200)
 
-const TopicCard = ()=>{
+    }
     return(
         <div className="col ">
-            <div className="card border border-success border-2 element h-100 ">
+            <div onClick={clickHandling} className="card  element h-100 ">
                 <img src={logo} className="card-img-top" alt="..." />
                 <div className="card-body">
                     <h5 className="card-title">Detecteur de couleurs</h5>
-                    <p className="card-text">Avec le lien d'une photo detecter toutes les couleurs dans cette photo
-                    et générer une background avec ces couleurs</p>
-                </div>
-                <div className="card-footer">
-                    <button className="btn btn-outline-info btn-lg ">Essayer</button>
+                    <p className="card-text">Détection et génération des backgrounds avec les couleurs d'une photo</p>
                 </div>
             </div>
         </div>

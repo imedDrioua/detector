@@ -9,12 +9,11 @@ class Dashboard extends Component {
             <div>
             <Navigation/>
             <div className={"dashboard"}>
-
-
-            <div className="row row-cols-1 row-cols-md-3 g-2 elements">
-               <TopicCard/>
-               <TopicCard/>
-               <TopicCard/>
+                <h2 className={"dash-title "}>Qu'est ce qu'on a ?</h2>
+                <div className="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-3 elements">
+               <TopicCard direction={"/colorDetector"}/>
+               <TopicCard direction={1}/>
+               <TopicCard direction={2}/>
 
             </div>
             </div>
