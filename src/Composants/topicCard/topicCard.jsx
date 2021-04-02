@@ -5,12 +5,11 @@ const TopicCard = ({direction})=>{
     const match = useRouteMatch();
     const history= useHistory();
     const clickHandling=()=>{
-     setTimeout(()=>{history.push(`${match.url}${direction}`)},200)
-
+     setTimeout(()=>{history.push(`${match.url}${direction}`)},200);
     }
     return(
-        <div className="col ">
-            <div onClick={clickHandling} className="card  element h-100 ">
+        <div className="col col-md-3 col-lg-3">
+            <div onClick={clickHandling} className="card  element ">
                 <img src={logo} className="card-img-top" alt="..." />
                 <div className="card-body">
                     <h5 className="card-title">Detecteur de couleurs</h5>

@@ -44,7 +44,7 @@ function Sign({up}){
 
                 }
             )
-            .catch(err=>
+            .catch(()=>
                     setError(true)
 
             );

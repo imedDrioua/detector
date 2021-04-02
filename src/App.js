@@ -7,13 +7,16 @@ import Sign from "./Composants/Sign/Sign";
 import Dashboard from "./Composants/Dashboard/dashboard";
 import {useSelector} from "react-redux";
 import ColorDetector from "./Composants/colorDetector/colorDetector";
+import Navigation from "./Composants/navigation/nav";
 
 function App() {
     const background = useSelector(state => state.appThemeReducer.background);
     return (
-         <div className={'app '}>
+         <div className={'app container-fluid'}>
                 <Particles className={"particles"} style={{backgroundImage : `${background}`}} params ={params}/>
-                <Switch>
+             <Navigation/>
+
+             <Switch>
                 <Route exact path={"/"}>
                     <Sign up={false}/>
                 </Route>

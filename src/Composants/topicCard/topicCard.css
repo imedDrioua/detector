@@ -1,5 +1,6 @@
 .element img{
-    
+    width: 25vw;
+    height : auto;
     margin : 2% auto;
 }
 .element h5{

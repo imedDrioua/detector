@@ -8,23 +8,8 @@ import {connect} from "react-redux";
 import {withRouter} from "react-router-dom";
 import "./colorDetector.css"
 
-const app = new Clarifai.App({
-    apiKey: 'b60f714daecf470f8a53dc14d1fd1986'
-});
-
-
-const initialBackground = "linear-gradient(to right top, #051937, #004d7a, #008793, #00bf72, #a8eb12)";
-const mapDispatchToProps = (dispatch)=>{
-    return {
-        setBackground :(background) => dispatch({type : "SET_BACKGROUND",payload : background})
-    }
-}
-const mapStateToProps = (state)=>{
-    return{
-        user: state.userReducer.user
-    }
-}
 class ColorDetector extends Component {
+
     constructor(props) {
         super(props);
         this.state = {
@@ -35,6 +20,11 @@ class ColorDetector extends Component {
         }
 
     }
+    componentDidMount() {
+        const {user,history} = this.props;
+        if(!user) history.push("/");
+    }
+
     lienTappe = (even)=>{
         this.setState({lien : even.target.value});
         if(even.target.value==='')
@@ -86,4 +76,19 @@ class ColorDetector extends Component {
     }
 
 }
+const mapStateToProps = (state)=>{
+    return{
+        user: state.userReducer.user
+    }
+}
+const mapDispatchToProps = (dispatch)=>{
+    return {
+        setBackground :(background) => dispatch({type : "SET_BACKGROUND",payload : background})
+    }
+}
+const app = new Clarifai.App({
+    apiKey: 'b60f714daecf470f8a53dc14d1fd1986'
+});
+const initialBackground = "linear-gradient(to right top, #051937, #004d7a, #008793, #00bf72, #a8eb12)";
 export default connect(mapStateToProps,mapDispatchToProps)(withRouter(ColorDetector));
+

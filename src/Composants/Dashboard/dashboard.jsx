@@ -1,20 +1,30 @@
 import {Component} from 'react'
-import Navigation from "../navigation/nav";
 import "./dashboard.css";
 import TopicCard from "../topicCard/topicCard";
+import {connect} from 'react-redux'
+import {withRouter} from 'react-router-dom';
+const mapStateToProps = (state)=>{
+    return{
+        user: state.userReducer.user
+    }
+}
 class Dashboard extends Component {
+
+    componentDidMount() {
+        const {user,history} = this.props;
+        if(!user) history.push("/");
+    }
+
 
     render() {
         return(
             <div>
-            <Navigation/>
             <div className={"dashboard"}>
                 <h2 className={"dash-title "}>Qu'est ce qu'on a ?</h2>
-                <div className="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-3 elements">
+                <div className="row g-3 justify-content-center elements">
                <TopicCard direction={"/colorDetector"}/>
                <TopicCard direction={1}/>
                <TopicCard direction={2}/>
-
             </div>
             </div>
             </div>
@@ -22,4 +32,4 @@ class Dashboard extends Component {
     }
 }
 
-export default Dashboard;
+export default connect(mapStateToProps,null)(withRouter(Dashboard));

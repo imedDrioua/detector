@@ -1,0 +1,26 @@
+webpackHotUpdate("main",{
+
+/***/ "./node_modules/css-loader/dist/cjs.js?!./node_modules/postcss-loader/src/index.js?!./src/Composants/Dashboard/dashboard.css":
+/*!***************************************************************************************************************************************************!*\
+  !*** ./node_modules/css-loader/dist/cjs.js??ref--5-oneOf-4-1!./node_modules/postcss-loader/src??postcss!./src/Composants/Dashboard/dashboard.css ***!
+  \***************************************************************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../../node_modules/css-loader/dist/runtime/api.js */ "./node_modules/css-loader/dist/runtime/api.js");
+/* harmony import */ var _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0__);
+// Imports
+
+var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(true);
+// Module
+___CSS_LOADER_EXPORT___.push([module.i, ".dashboard{\r\n    margin-top: 10% ;\r\n   justify-content : center;\r\n    display: flex;\r\n\r\n\r\n}\r\n.elements{\r\n    margin-top: 5px;\r\n}\r\n.element{\r\n    box-shadow: 0 .8rem .8rem rgba(0.8,0.8,0.8,0.5);\r\n    transition: all .2s ease-in-out;\r\n    background-color: transparent;\r\n}\r\n.elements .element:hover{\r\n    cursor: pointer;\r\n    transform : scale(1.05) translateY(-10px) ;\r\n    background-color: lightblue;\r\n}\r\n.elements:hover .element:not(:hover) {\r\n    transform: scale(0.95);\r\n    box-shadow: 0 .3rem .3rem black;\r\n}\r\n.element:active{\r\n   transform: scale(0.95) translateY(-10px)!important;\r\n    box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.2);\r\n    transition: all .2s linear;\r\n}\r\n.dash-title{\r\n    font-family: \"Pacifico\", serif;\r\n    letter-spacing : 2px;\r\n    font-size : 3rem;\r\n    color : white;\r\n    text-shadow: 2px 2px grey;\r\n\r\n\r\n}", "",{"version":3,"sources":["webpack://src/Composants/Dashboard/dashboard.css"],"names":[],"mappings":"AAAA;IACI,gBAAgB;GACjB,wBAAwB;IACvB,aAAa;;;AAGjB;AACA;IACI,eAAe;AACnB;AACA;IACI,+CAA+C;IAC/C,+BAA+B;IAC/B,6BAA6B;AACjC;AACA;IACI,eAAe;IACf,0CAA0C;IAC1C,2BAA2B;AAC/B;AACA;IACI,sBAAsB;IACtB,+BAA+B;AACnC;AACA;GACG,kDAAkD;IACjD,4CAA4C;IAC5C,0BAA0B;AAC9B;AACA;IACI,8BAA8B;IAC9B,oBAAoB;IACpB,gBAAgB;IAChB,aAAa;IACb,yBAAyB;;;AAG7B","sourcesContent":[".dashboard{\r\n    margin-top: 10% ;\r\n   justify-content : center;\r\n    display: flex;\r\n\r\n\r\n}\r\n.elements{\r\n    margin-top: 5px;\r\n}\r\n.element{\r\n    box-shadow: 0 .8rem .8rem rgba(0.8,0.8,0.8,0.5);\r\n    transition: all .2s ease-in-out;\r\n    background-color: transparent;\r\n}\r\n.elements .element:hover{\r\n    cursor: pointer;\r\n    transform : scale(1.05) translateY(-10px) ;\r\n    background-color: lightblue;\r\n}\r\n.elements:hover .element:not(:hover) {\r\n    transform: scale(0.95);\r\n    box-shadow: 0 .3rem .3rem black;\r\n}\r\n.element:active{\r\n   transform: scale(0.95) translateY(-10px)!important;\r\n    box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.2);\r\n    transition: all .2s linear;\r\n}\r\n.dash-title{\r\n    font-family: \"Pacifico\", serif;\r\n    letter-spacing : 2px;\r\n    font-size : 3rem;\r\n    color : white;\r\n    text-shadow: 2px 2px grey;\r\n\r\n\r\n}"],"sourceRoot":""}]);
+// Exports
+/* harmony default export */ __webpack_exports__["default"] = (___CSS_LOADER_EXPORT___);
+
+
+/***/ })
+
+})
+//# sourceMappingURL=main.f28e06e65efcbc2b027d.hot-update.js.map
