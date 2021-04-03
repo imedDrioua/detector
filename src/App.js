@@ -12,7 +12,7 @@ import Navigation from "./Composants/navigation/nav";
 function App() {
     const background = useSelector(state => state.appThemeReducer.background);
     return (
-         <div className={'app container-fluid'}>
+         <div  className={'app container-fluid'}>
                 <Particles className={"particles"} style={{backgroundImage : `${background}`}} params ={params}/>
              <Navigation/>
 
@@ -67,4 +67,5 @@ const   params={
         }
     }
 }
+
 export default App;

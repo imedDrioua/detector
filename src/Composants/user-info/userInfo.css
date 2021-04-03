@@ -1,0 +1,16 @@
+.info-form {
+    margin: 3px 0;
+    color: white;
+    font-family: "Pacifico" , serif;
+    font-size : 2.5rem;
+    letter-spacing: 2px;
+    text-align: start;
+
+
+
+}
+.info-form label {
+    display: block;
+
+
+}

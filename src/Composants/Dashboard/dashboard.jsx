@@ -21,7 +21,7 @@ class Dashboard extends Component {
             <div>
             <div className={"dashboard"}>
                 <h2 className={"dash-title "}>Qu'est ce qu'on a ?</h2>
-                <div className="row g-3 justify-content-center elements">
+                <div className="row g-2 justify-content-center elements">
                <TopicCard direction={"/colorDetector"}/>
                <TopicCard direction={1}/>
                <TopicCard direction={2}/>

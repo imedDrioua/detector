@@ -23,8 +23,26 @@ nav button{
     background: linear-gradient(to right top, #004d7a, #008793, #00bf72, #a8eb12);
     animation: movRight 1s ease-in-out .2s;
     box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.5);
-
+    transition: all 1s ease-in-out;
     animation-fill-mode: backwards;
+}
+.user-avatar-clicked{
+    transform : scale(65);
+    box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.6);
+    opacity: 1;
+    z-index: 2000;
+    overflow : hidden;
+    background: linear-gradient(to right top, #004d7a, #008793, #00bf72, #a8eb12) 100%;
+    position :fixed;
+
+}
+.user-avatar:hover{
+    box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.6);
+    cursor: pointer;
+}
+
+.hide-user-image{
+    display : none;
 }
 @keyframes movRight {
     0% {
@@ -35,4 +53,16 @@ nav button{
     100% {
         opacity: 1;
         transform: translateX(0); }
+}
+.menu{
+    position : absolute;
+    left : 10%;
+    top : 100%;
+    z-index: 3000;
+}
+.user-info-form{
+    position : absolute;
+    left : 50%;
+    top : 100%;
+    z-index: 3000;
 }

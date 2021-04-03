@@ -1,8 +1,5 @@
 .dashboard{
-    margin-top: 10% ;
-
-
-
+    margin-top: 6% ;
 
 }
 .elements{
@@ -12,6 +9,7 @@
     box-shadow: 0 .8rem .8rem rgba(0.8,0.8,0.8,0.5);
     transition: all .2s ease-in-out;
     background-color: transparent;
+
 }
 .elements .element:hover{
     cursor: pointer;
@@ -30,7 +28,7 @@
 .dash-title{
     font-family: "Pacifico", serif;
     letter-spacing : 2px;
-    font-size : 8vw;
+    font-size : 4vw;
     color : white;
     text-shadow: 2px 2px grey;
 
