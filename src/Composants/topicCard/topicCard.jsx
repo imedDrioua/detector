@@ -8,7 +8,7 @@ const TopicCard = ({direction})=>{
      setTimeout(()=>{history.push(`${match.url}${direction}`)},200);
     }
     return(
-        <div className="col col-md-1 col-lg-2">
+        <div className="col col-md-2 col-lg-2">
             <div onClick={clickHandling} className="card  element ">
                 <img src={logo} className="card-img-top" alt="..." />
                 <div className="card-body">

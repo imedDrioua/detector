@@ -12,28 +12,26 @@ nav button{
     letter-spacing : 2px;
 
 }
+
 .user-avatar{
     padding : .5%;
     width : 50px;
     height: auto;
-    opacity : 0.9;
     position :absolute;
     left:20px;
     border-radius : 50%;
     background: linear-gradient(to right top, #004d7a, #008793, #00bf72, #a8eb12);
     animation: movRight 1s ease-in-out .2s;
     box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.5);
-    transition: all 1s ease-in-out;
+    transition: all .4s ease-out ;
     animation-fill-mode: backwards;
 }
 .user-avatar-clicked{
-    transform : scale(65);
+
+    transform : scaleX(80) scaleY(60);
     box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.6);
-    opacity: 1;
     z-index: 2000;
-    overflow : hidden;
-    background: linear-gradient(to right top, #004d7a, #008793, #00bf72, #a8eb12) 100%;
-    position :fixed;
+    background-image: linear-gradient(to right bottom, rgba(126, 213, 111, 0.8), rgba(40, 180, 133, 0.8));
 
 }
 .user-avatar:hover{
@@ -55,6 +53,11 @@ nav button{
         transform: translateX(0); }
 }
 .menu{
+    color: white;
+    font-family: "Pacifico" , serif;
+    font-size : 3rem;
+    letter-spacing: 1px;
+
     position : absolute;
     left : 10%;
     top : 100%;

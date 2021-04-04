@@ -2,13 +2,13 @@
 import "./menu.css"
 
 
-const Menu = ({handle})=>{
+const Menu = ({handleDashboard,handleDeconnect})=>{
 
     return(
         <ol className={"menu-list"}>
             <li>Profile</li>
-            <li onClick={handle}>Dashboard</li>
-            <li>Déconnecter</li>
+            <li onClick={handleDashboard}>Dashboard</li>
+            <li onClick={handleDeconnect}>Déconnecter</li>
         </ol>
     )
 }
