@@ -3,7 +3,7 @@
 
 }
 .elements{
-    margin : auto;
+    margin : 60px auto;
 }
 .element{
     box-shadow: 0 .8rem .8rem rgba(0.8,0.8,0.8,0.5);

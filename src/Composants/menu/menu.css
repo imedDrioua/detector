@@ -5,11 +5,12 @@
 
 }
 .menu-list li{
-    transition : all .2s ease-in;
+    transition : all 0.08s;
 }
 .menu-list li:hover{
     transform : translateY(5px) scale(1.05);
     cursor: pointer;
-    box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.2);
+    box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.4);
+    background-color: white;
 
 }

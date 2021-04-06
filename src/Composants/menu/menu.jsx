@@ -2,11 +2,11 @@
 import "./menu.css"
 
 
-const Menu = ({handleDashboard,handleDeconnect})=>{
+const Menu = ({handleDashboard,handleDeconnect,handleProfile})=>{
 
     return(
         <ol className={"menu-list"}>
-            <li>Profile</li>
+            <li onClick={handleProfile}>Profile</li>
             <li onClick={handleDashboard}>Dashboard</li>
             <li onClick={handleDeconnect}>Déconnecter</li>
         </ol>

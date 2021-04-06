@@ -4,7 +4,6 @@ import {useDispatch,useSelector} from "react-redux";
 import {useHistory,useLocation}  from "react-router-dom"
 import userAvatar from '../../images/user.png';
 import Menu from "../menu/menu";
-import UserInfo from "../user-info/UserInfo";
 
 function Navigation (){
     const dispatch = useDispatch();
@@ -44,16 +43,19 @@ function Navigation (){
         setTimeout(()=>{        setClicked(true);
         },800);
     }
+    const profile = ()=>{
+        hideUser();
+        history.push(`${location.pathname}/profile`);
+    }
     return (
        <nav className={"nav navbar shadow-lg"}>
            {user && <div id={"user"} onClick={clickUser} className={"user-avatar "}>
-               <img id={"image-user"} src={userAvatar}/>
+               <img id={"image-user"} alt="error" src={userAvatar}/>
            </div>}
            {
 
                clicked &&(<div className={"menu"}>
-                   <div>Salut  Imed</div>
-                   <Menu handleDashboard={dashboard} handleDeconnect={deconnecter}/>
+                   <Menu handleDashboard={dashboard} handleDeconnect={deconnecter} handleProfile={profile}/>
                </div>)
            }
            <button

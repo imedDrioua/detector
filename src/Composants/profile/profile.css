@@ -1,0 +1,26 @@
+
+
+.profile-container{
+    height : 700px;
+    padding :0;
+    background-image:  linear-gradient(to right bottom, #28b485, rgba(126, 213, 111, 0.8));
+    box-shadow: .5rem 1rem 1rem rgba(0.8,0.8,0.8,0.8);
+    transition: all .2s ease-in-out;
+    transform: skewY(-1deg);
+    margin-top: 20px;
+}
+.header{
+    height :500px;
+    background-color: ghostwhite;
+    clip-path: polygon(0 0, 100% 0, 100% 40%, 0 100%);
+    position : absolute;
+    z-index:-33;
+    top :0;
+    left :0;
+    right :0;
+    bottom :0;
+}
+.profile-container:hover{
+    transform : skewY(1deg);
+
+    }

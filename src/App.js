@@ -8,6 +8,7 @@ import Dashboard from "./Composants/Dashboard/dashboard";
 import {useSelector} from "react-redux";
 import ColorDetector from "./Composants/colorDetector/colorDetector";
 import Navigation from "./Composants/navigation/nav";
+import Profile from "./Composants/profile/profile";
 
 function App() {
     const background = useSelector(state => state.appThemeReducer.background);
@@ -29,6 +30,9 @@ function App() {
                     <Route exact path={"/dashboard/colorDetector"}>
                         <ColorDetector/>
                     </Route>
+                 <Route exact path={"/dashboard/profile"}>
+                     <Profile user={null} />
+                 </Route>
                 </Switch>
             </div>
     );
