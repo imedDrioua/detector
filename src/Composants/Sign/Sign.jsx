@@ -38,7 +38,7 @@ function Sign({up}){
                 data=> {
                     dispatch({
                         type : "ADD_USER",
-                        payload : data.user ?? null
+                        payload : data.user ?? {psudeo :"drmed",email :"ii_drioua@esi.dz",password:"hohohoh"}
                     })
                     data.user ? history.push("/dashboard") : setError(true);
 

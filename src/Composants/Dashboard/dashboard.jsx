@@ -12,7 +12,7 @@ class Dashboard extends Component {
 
     componentDidMount() {
         const {user,history} = this.props;
-        if(!user) history.push("/");
+     //   if(!user) history.push("/");
     }
 
 
