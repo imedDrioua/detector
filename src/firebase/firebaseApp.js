@@ -24,8 +24,8 @@ const app = initializeApp(firebaseConfig);
 const auth = getAuth();
 export const signup_fr = async (email, password) =>
 {
-    return  await createUserWithEmailAndPassword(auth, email, password)
-
+    const user =  await createUserWithEmailAndPassword(auth, email, password)
+    return user.user
 
 }
 export const register =  (email,password) =>
@@ -37,14 +37,11 @@ export const register =  (email,password) =>
     }).catch(error => console.log(error))
     return user
 }
-export const sigin_fr =   (email,password)  => {
+export const sigin_fr =  async (email,password)  => {
 
-  signInWithEmailAndPassword(auth, email, password).then(usercred =>{
-       return usercred.user
-   }).catch(error => console.log(error))
+  const user =  await signInWithEmailAndPassword(auth, email, password)
 
-
-   return null
+   return user.user
 
 }
 

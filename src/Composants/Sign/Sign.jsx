@@ -23,22 +23,20 @@ function Sign({up}){
     const onPsudeotappe = (even)=>{
         setPsudeo(even.target.value);
     }
-    const signup=   (event) => {
+    const signup=   async (event) => {
         event.preventDefault();
 
-       let user =  register(email, password)
-             user  &&  ( user = { email : user.user.email, psudeo})
-                dispatch({
-                    type: "ADD_USER",
-                    payload: user ?? null
-                })
-                user ? history.push("/dashboard") : setError(true);
+        let user = await signup_fr(email, password)
+        dispatch({
+            type: "ADD_USER",
+            payload: user ?? null
+        })
+        user ? history.push("/dashboard") : setError(true);
 
     }
-    const signin= (event) => {
+    const signin= async (event) => {
         event.preventDefault();
-        let user =   sigin_fr(email, password);
-
+        let user = await  sigin_fr(email, password);
         if (user) {
             dispatch({
                 type: "ADD_USER",
