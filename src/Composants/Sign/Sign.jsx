@@ -4,7 +4,7 @@ import {Link} from 'react-router-dom'
 import {useDispatch} from "react-redux";
 import {useHistory} from "react-router-dom"
 import ColorsLogo from "../logos/colorsLogo";
-
+import {signup_fr, sigin_fr, register} from "../../firebase/firebaseApp";
 
 function Sign({up}){
     const [psudeo,setPsudeo] = useState('');
@@ -23,57 +23,34 @@ function Sign({up}){
     const onPsudeotappe = (even)=>{
         setPsudeo(even.target.value);
     }
-    const signup=(event)=>{
+    const signup=   (event) => {
         event.preventDefault();
-        fetch("http://localhost:3001/signup",{
-            method: "POST",
-            headers: {'content-type':"application/json"},
-            body : JSON.stringify({
-                psudeo,
-                email,
-                password
-            })
-        }).then(response=> response.json())
-            .then(
-                data=> {
-                    dispatch({
-                        type : "ADD_USER",
-                        payload : data.user ?? {psudeo :"drmed",email :"ii_drioua@esi.dz",password:"hohohoh"}
-                    })
-                    data.user ? history.push("/dashboard") : setError(true);
 
-                }
-            )
-            .catch(()=>
-                    setError(true)
-
-            );
+       let user =  register(email, password)
+             user  &&  ( user = { email : user.user.email, psudeo})
+                dispatch({
+                    type: "ADD_USER",
+                    payload: user ?? null
+                })
+                user ? history.push("/dashboard") : setError(true);
 
     }
-    const signin=(event)=>{
+    const signin= (event) => {
         event.preventDefault();
-        fetch("http://localhost:3001/signin",{
-            method: "POST",
-            headers: {'content-type':"application/json"},
-            body : JSON.stringify({
-                email,
-                password
+        let user =   sigin_fr(email, password);
+
+        if (user) {
+            dispatch({
+                type: "ADD_USER",
+                payload: user ?? null
             })
-        }).then (response=>response.json()).then(data =>
-            {
-                if(data.logged) {
-                    dispatch({
-                        type : "ADD_USER",
-                        payload : data.user
-                    })
-                    history.push("/dashboard");
+            history.push("/dashboard");
 
-                }else{
-                    data.user ? setError(true) : setFound(false)
-                }
+        } else {
+            user ? setError(true) : setFound(false)
+        }
 
-            }
-        );
+
     }
 
     return(<div className={"d-flex justify-content-center"}>
