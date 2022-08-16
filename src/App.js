@@ -55,7 +55,7 @@ function App() {
                     <Route exact path={"/dashboard/colorDetector"}>
                         <ColorDetector/>
                     </Route>
-                 <Route exact path={"/dashboard/profile"}>
+                 <Route  path={"/profile"}>
                      <Profile user={null} />
                  </Route>
                 </Switch>

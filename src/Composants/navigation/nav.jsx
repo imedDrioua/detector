@@ -45,7 +45,7 @@ function Navigation (){
     }
     const profile = ()=>{
         hideUser();
-        history.push(`${location.pathname}/profile`);
+      if(! location.pathname.includes("/profile"))  history.push("/profile");
     }
     return (
        <nav className={"nav navbar shadow-lg"}>
