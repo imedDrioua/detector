@@ -1,6 +1,6 @@
 // Import the functions you need from the SDKs you need
 import { initializeApp } from "firebase/app";
-import { getAnalytics } from "firebase/analytics";
+
 import { getAuth, createUserWithEmailAndPassword,signInWithEmailAndPassword } from "firebase/auth";
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
@@ -19,22 +19,32 @@ const firebaseConfig = {
 
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
-const analytics = getAnalytics(app);
+
 // Gestion de l'authentification
 const auth = getAuth();
-export const signup_fr = async (email, password) => {
-    const user = await createUserWithEmailAndPassword(auth, email, password)
+export const signup_fr = async (email, password) =>
+{
+    return  await createUserWithEmailAndPassword(auth, email, password)
 
 
-    return user.credential;
 }
+export const register =  (email,password) =>
+{
+    let user = {}
+    createUserWithEmailAndPassword(auth, email, password).then(userCredential =>
+    {
+        user =  userCredential.user
+    }).catch(error => console.log(error))
+    return user
+}
+export const sigin_fr =   (email,password)  => {
 
-export const sigin_fr =  async (email,password)  => {
+  signInWithEmailAndPassword(auth, email, password).then(usercred =>{
+       return usercred.user
+   }).catch(error => console.log(error))
 
-   const user = await   signInWithEmailAndPassword(auth, email, password)
 
-
-   return user.credential
+   return null
 
 }
 

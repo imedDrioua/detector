@@ -4,7 +4,7 @@ import {Link} from 'react-router-dom'
 import {useDispatch} from "react-redux";
 import {useHistory} from "react-router-dom"
 import ColorsLogo from "../logos/colorsLogo";
-import {signup_fr,sigin_fr} from "../../firebase/firebaseApp";
+import {signup_fr, sigin_fr, register} from "../../firebase/firebaseApp";
 
 function Sign({up}){
     const [psudeo,setPsudeo] = useState('');
@@ -23,22 +23,25 @@ function Sign({up}){
     const onPsudeotappe = (even)=>{
         setPsudeo(even.target.value);
     }
-    const signup=async (event) => {
+    const signup=   (event) => {
         event.preventDefault();
-        let user = signup_fr(email, password);
-        user = {"email": user.email, psudeo: psudeo}
-        console.log(user)
-        dispatch({
-            type: "ADD_USER",
-            payload: user ?? null
-        })
-        user ? history.push("/dashboard") : setError(true);
+       let user =  register(email, password)
+             user  &&  ( user = { email : user.user.email, psudeo})
+                dispatch({
+                    type: "ADD_USER",
+                    payload: user ?? null
+                })
+                user ? history.push("/dashboard") : setError(true);
+
+
+
+
 
     }
-    const signin=async (event) => {
+    const signin= (event) => {
         event.preventDefault();
-        const user = await  sigin_fr(email, password);
-        console.log(user)
+        let user =   sigin_fr(email, password);
+
         if (user) {
             dispatch({
                 type: "ADD_USER",
