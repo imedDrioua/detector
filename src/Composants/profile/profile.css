@@ -3,6 +3,13 @@
     position: absolute;
     left: 15px;
 }
+.infos{
+    background-color: ghostwhite;
+    height: 50vh;
+    margin-top: 2%;
+    border-radius: 20%;
+    padding: 5% ;
+}
 .profile-container{
     height : 700px;
     padding :0;
@@ -11,11 +18,16 @@
     transition: all .2s ease-in-out;
     transform: skewY(-1deg);
     margin-top: 20px;
+    font-family: "Pacifico",Serif;
+    letter-spacing: 3px;
+}
+.profile-container h3 {
+    font-size: 2.8vw ;
 }
 .header{
     height :500px;
     background-color: ghostwhite;
-    clip-path: polygon(0 0, 100% 0, 100% 40%, 0 100%);
+    clip-path: polygon(30% 0, 100% 0, 100% 0%, 0 30%);
     position : absolute;
     z-index:-33;
     top :0;
@@ -27,3 +39,25 @@
     transform : skewY(1deg);
 
     }
+@media screen and (max-width:900px)  {
+    .profile-container h3 {
+        font-size: 30px ;
+    }
+}
+.avatar {
+    vertical-align: middle;
+    width: 10rem;
+    height: 10rem;
+    border-radius: 50%;
+    margin-top: 95px;
+}
+.form_custom{
+    font-size: 2vw;
+
+}
+.form_custom label{
+    font-family: "Times New Roman",Serif;
+
+
+;
+}
