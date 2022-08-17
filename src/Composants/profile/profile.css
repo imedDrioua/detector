@@ -1,5 +1,8 @@
 
-
+.heading{
+    position: absolute;
+    left: 15px;
+}
 .profile-container{
     height : 700px;
     padding :0;

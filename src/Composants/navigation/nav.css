@@ -28,7 +28,7 @@ nav button{
 }
 .user-avatar-clicked {
 
-    transform : scaleX(80) scaleY(60);
+    transform : scaleX(36) scaleY(60);
     box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.6);
     z-index: 2000;
     background-image: linear-gradient(to right bottom, rgba(126, 213, 111, 0.8), rgba(40, 180, 133, 0.8));
@@ -55,8 +55,8 @@ nav button{
 .menu{
     color: white;
     font-family: "Pacifico" , serif;
-    font-size : 3rem;
-    letter-spacing: 1px;
+    font-size : 2.5rem;
+    letter-spacing:     2px;
 
     position : absolute;
     left : 10%;
