@@ -14,7 +14,9 @@
 .elements .element:hover{
     cursor: pointer;
     transform : scale(1.05) translateY(-10px) ;
-    background-color: lightblue;
+    background-color: #00bf72;
+
+
 }
 .elements:hover .element:not(:hover) {
     transform: scale(0.95);
