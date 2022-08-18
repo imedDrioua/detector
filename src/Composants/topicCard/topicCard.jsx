@@ -13,7 +13,7 @@ const TopicCard = ({direction})=>{
                 <img src={logo} className="card-img-top" alt="..." />
                 <div className="card-body">
                     <h5 className="card-title">Detecteur de couleurs</h5>
-                    <p className="card-text">Détection et génération des arrière plans avec les couleurs d'une photo</p>
+                    <p className="card-text">Détection et génération des arrières plans avec les couleurs d'une photo</p>
                 </div>
             </div>
         </div>
