@@ -26,7 +26,7 @@ function Sign({up}){
     const signup=   async (event) => {
         event.preventDefault();
 
-        let user = await signup_fr(email, password)
+        let user = await signup_fr(email, password,psudeo)
         dispatch({
             type: "ADD_USER",
             payload: user ?? null
@@ -60,7 +60,7 @@ function Sign({up}){
             {up && <div className="form-floating mb-3">
                 <input required onChange={onPsudeotappe} type="text" className="form-control" id="floatingInput"
                        placeholder={"Jack"}/>
-                <label htmlFor="floatingInput">Pseudo</label>
+                <label htmlFor="floatingInput">Nom et Prénom</label>
             </div>}
             <div className="form-floating mb-3">
                 <input required onChange={onEmailtappe} type="email" className="form-control" id="floatingInput1" placeholder="name@example.com"/>
