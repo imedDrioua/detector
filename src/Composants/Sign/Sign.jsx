@@ -35,7 +35,12 @@ function Sign({up}){
         }catch(err){
             setError(true)
         }
+        dispatch({
+            type : "AUTH_USER",
+            payload : true
+        })
         if(user){
+            history.push("/dashboard")
             createUserProfile( psudeo.split(" ")[0], psudeo.split(" ")[1],new Date("Mars 07, 2000"),user.uid,"+213 541874128").then(profile=>{
                 const  fb_info =user
                 const puser = {
@@ -47,7 +52,7 @@ function Sign({up}){
                     type: "ADD_USER",
                     payload:  puser
                 })
-                history.push("/dashboard")
+
             }).catch(_=> alert("Can't create user"))
 
         }
@@ -61,9 +66,13 @@ function Sign({up}){
         }catch (err){
             user ? setError(true) : setFound(false)
         }
+        dispatch({
+            type : "AUTH_USER",
+            payload : true
+        })
 
         if (user) {
-
+            history.push("/dashboard");
             const profile =await getProfile(user.uid)
             const  fb_info = user
             const puser ={
@@ -74,7 +83,7 @@ function Sign({up}){
                 type: "ADD_USER",
                 payload:  puser
             })
-            history.push("/dashboard");
+
 
         }
 

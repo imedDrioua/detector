@@ -15,6 +15,10 @@ function Navigation (){
             payload :null
         });
         dispatch({
+            type : "AUTH_USER",
+            payload : false
+        })
+        dispatch({
             type :"SET_BACKGROUND",
             payload : null
         })

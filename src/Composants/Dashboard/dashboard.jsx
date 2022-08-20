@@ -1,23 +1,21 @@
-import {Component} from 'react'
+
 import "./dashboard.css";
 import TopicCard from "../topicCard/topicCard";
-import {connect} from 'react-redux'
-import {withRouter} from 'react-router-dom';
-const mapStateToProps = (state)=>{
-    return{
-        user: state.userReducer.user
+
+import {Redirect, withRouter} from 'react-router-dom';
+import {useSelector} from "react-redux";
+import {Loading} from "../loader/Loading";
+
+function  Dashboard () {
+    const user = useSelector(state=> state.userReducer.user)
+    const auth = useSelector(state=> state.userReducer.auth)
+    if( ! user && !auth){
+      return   <Redirect to={"/"}/>
     }
-}
-class Dashboard extends Component {
-
-    componentDidMount() {
-        const {user,history} = this.props;
-     //   if(!user) history.push("/");
-    }
-
-
-    render() {
-        return(
+    if(auth && ! user){
+        return <Loading />
+    }else
+      return(
             <div>
             <div className={"dashboard"}>
                 <h2 className={"dash-title "}>Qu'est ce qu'on a ?</h2>
@@ -29,7 +27,7 @@ class Dashboard extends Component {
             </div>
             </div>
         )
-    }
+
 }
 
-export default connect(mapStateToProps,null)(withRouter(Dashboard));
+export default withRouter(Dashboard);

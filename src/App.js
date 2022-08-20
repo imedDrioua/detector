@@ -9,7 +9,7 @@ import {useSelector,useDispatch} from "react-redux";
 import ColorDetector from "./Composants/colorDetector/colorDetector";
 import Navigation from "./Composants/navigation/nav";
 import Profile from "./Composants/profile/profile";
-import Loading from "./Composants/loader/Loading";
+import {Loading} from "./Composants/loader/Loading";
 
 function App() {
     const dispatch = useDispatch();
@@ -60,7 +60,7 @@ function App() {
                      <Profile user={null} />
                  </Route>
                  <Route  path={"/test"}>
-                     <Loading > <Sign up={true}/> </Loading>
+                     <Loading/>
                  </Route>
                 </Switch>
             </div>
