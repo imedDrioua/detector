@@ -13,7 +13,7 @@ function Navigation (){
     const deconnecter = ()=>{
         dispatch({
             type : "ADD_USER",
-            payload : null
+            payload :null
         });
         dispatch({
             type :"SET_BACKGROUND",

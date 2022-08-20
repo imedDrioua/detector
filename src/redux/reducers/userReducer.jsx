@@ -1,7 +1,8 @@
 
 const initialeState={
     user : null,
-    internet : false
+    internet : false,
+
 }
 
 const userReducer=(state=initialeState,action)=>{

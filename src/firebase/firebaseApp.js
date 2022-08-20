@@ -1,5 +1,6 @@
 // Import the functions you need from the SDKs you need
 import { initializeApp } from "firebase/app";
+import { getFirestore,doc ,setDoc, Timestamp,getDoc } from "firebase/firestore";
 
 import { getAuth, createUserWithEmailAndPassword,signInWithEmailAndPassword,updateProfile } from "firebase/auth";
 // TODO: Add SDKs for Firebase products that you want to use
@@ -25,7 +26,6 @@ const auth = getAuth();
 export const signup_fr = async (email, password,pseudo) =>
 {
     const user =  await createUserWithEmailAndPassword(auth, email, password)
-
     updateProfile(auth.currentUser, {
         displayName: pseudo, photoURL: ""
     }).then(() => {
@@ -43,18 +43,39 @@ export const register =  (email,password,pseudo) =>
     {
         user =  userCredential.user
     }).catch(error => console.log(error))
-
-
     return user
 }
 export const sigin_fr =  async (email,password)  => {
-
   const user =  await signInWithEmailAndPassword(auth, email, password)
-
-
    return user.user
+}
 
+/////// Fire store
+const db = getFirestore(app)
 
+export const createUserProfile = async (nom , prenom, date, refrence,telephone )=>{
+    const doc_ref = doc(db,"users",refrence)
+    const profile = {
+        fname : nom,
+        lname :prenom,
+        date : Timestamp.fromDate(date),
+        phone : telephone,
+        sessions: 0
+
+    }
+    await setDoc(doc_ref,profile)
+    return profile
+}
+
+export const getProfile = async (uid)=>{
+    const docRef = doc(db,"user",uid)
+    const snaphot = await getDoc(docRef)
+
+    if(snaphot.exists()){
+        return  snaphot.data()
+    }else{
+        return null
+    }
 }
 
 

@@ -1,10 +1,10 @@
-import React,{useState} from 'react'
+import React,{useState,useEffect} from 'react'
 import './sign.css'
 import {Link} from 'react-router-dom'
 import {useDispatch} from "react-redux";
 import {useHistory} from "react-router-dom"
 import ColorsLogo from "../logos/colorsLogo";
-import {signup_fr, sigin_fr, register} from "../../firebase/firebaseApp";
+import {signup_fr, sigin_fr, getProfile, createUserProfile} from "../../firebase/firebaseApp";
 
 function Sign({up}){
     const [psudeo,setPsudeo] = useState('');
@@ -14,6 +14,10 @@ function Sign({up}){
     const [found , setFound] = useState(true);
     const history = useHistory();
     const dispatch = useDispatch();
+    useEffect(()=>{
+        setFound(true);
+        setError(false);
+    },[up])
     const onEmailtappe = (even)=>{
         setEmail(even.target.value);
     }
@@ -25,28 +29,55 @@ function Sign({up}){
     }
     const signup=   async (event) => {
         event.preventDefault();
+        let user
+        try {
+             user = await signup_fr(email, password,psudeo)
+        }catch(err){
+            setError(true)
+        }
+        if(user){
+            let profile
+            history.push("/dashboard")
+            profile =  await createUserProfile( psudeo.split(" ")[0], psudeo.split(" ")[1],new Date("Mars 07, 2000"),user.uid,"+213 541874128")
+            const  fb_info =user
+            const puser = {
+                fb_info  ,
+                profile
 
-        let user = await signup_fr(email, password,psudeo)
-        dispatch({
-            type: "ADD_USER",
-            payload: user ?? null
-        })
-        user ? history.push("/dashboard") : setError(true);
+            }
+            dispatch({
+                type: "ADD_USER",
+                payload:  puser
+            })
+
+        }
 
     }
     const signin= async (event) => {
         event.preventDefault();
-        let user = await  sigin_fr(email, password);
-        if (user) {
-            dispatch({
-                type: "ADD_USER",
-                payload: user ?? null
-            })
-            history.push("/dashboard");
-
-        } else {
+        let user
+        try {
+         user = await  sigin_fr(email, password);
+        }catch (err){
             user ? setError(true) : setFound(false)
         }
+
+        if (user) {
+
+            history.push("/dashboard");
+            const profile =await getProfile(user.uid)
+            const  fb_info = user
+            const puser ={
+                fb_info,
+                profile
+            }
+            dispatch({
+                type: "ADD_USER",
+                payload:  puser
+            })
+
+        }
+
 
 
     }
@@ -77,7 +108,7 @@ function Sign({up}){
             <p className={"m-hint"}>Ou </p>
             <p className={"hint"}>{up ? "Déja une couleur ?" : "Une nouvelle couleur ?"}</p>
             <Link style={{textDecoration : "none"}} to={up ? "/" : "/signup"}  >
-                <button className={"btn btn-outline-light btn-lg"}>{up ? "Connecter" : "Enregistrer"}</button>
+                <button  className={"btn btn-outline-light btn-lg"}>{up ? "Connecter" : "Enregistrer"}</button>
             </Link>
         </form>
     </div>);
