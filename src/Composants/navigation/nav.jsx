@@ -4,7 +4,6 @@ import {useDispatch,useSelector} from "react-redux";
 import {useHistory,useLocation}  from "react-router-dom"
 import userAvatar from '../../images/user.png';
 import Menu from "../menu/menu";
-
 function Navigation (){
     const dispatch = useDispatch();
     const history = useHistory();

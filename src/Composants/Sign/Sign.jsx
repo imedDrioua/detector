@@ -36,19 +36,19 @@ function Sign({up}){
             setError(true)
         }
         if(user){
-            let profile
-            history.push("/dashboard")
-            profile =  await createUserProfile( psudeo.split(" ")[0], psudeo.split(" ")[1],new Date("Mars 07, 2000"),user.uid,"+213 541874128")
-            const  fb_info =user
-            const puser = {
-                fb_info  ,
-                profile
+            createUserProfile( psudeo.split(" ")[0], psudeo.split(" ")[1],new Date("Mars 07, 2000"),user.uid,"+213 541874128").then(profile=>{
+                const  fb_info =user
+                const puser = {
+                    fb_info  ,
+                    profile
 
-            }
-            dispatch({
-                type: "ADD_USER",
-                payload:  puser
-            })
+                }
+                dispatch({
+                    type: "ADD_USER",
+                    payload:  puser
+                })
+                history.push("/dashboard")
+            }).catch(_=> alert("Can't create user"))
 
         }
 
@@ -64,7 +64,6 @@ function Sign({up}){
 
         if (user) {
 
-            history.push("/dashboard");
             const profile =await getProfile(user.uid)
             const  fb_info = user
             const puser ={
@@ -75,6 +74,7 @@ function Sign({up}){
                 type: "ADD_USER",
                 payload:  puser
             })
+            history.push("/dashboard");
 
         }
 
@@ -85,9 +85,9 @@ function Sign({up}){
     return(<div className={"d-flex justify-content-center"}>
         <form className={"sign"} onSubmit={up ? signup : signin} >
             <ColorsLogo/>
-            {(error && up) && <p style={{color : "red"}}>Something went wrong mother fucker</p>}
-            {(error && !up)&& <p style={{color : "red"}}> Worng password you fucking stupid </p> }
-            {found || <p style={{color : "red"}} >No user with this credintials go fuck your self </p>}
+            {(error && up) && <p style={{color : "red"}}>Adresse dèja prise :(, réssayer avec une autre </p>}
+            {(error && !up)&& <p style={{color : "red"}}> Mot de passe erroné </p> }
+            {found || <p style={{color : "red"}} >Désolé, aucun utilisateur n'est enregistrer avec  ces coordonnées </p>}
             {up && <div className="form-floating mb-3">
                 <input required onChange={onPsudeotappe} type="text" className="form-control" id="floatingInput"
                        placeholder={"Jack"}/>
