@@ -2,7 +2,9 @@
 import { initializeApp } from "firebase/app";
 import { getFirestore,doc ,setDoc, Timestamp,getDoc } from "firebase/firestore";
 
+
 import { getAuth, createUserWithEmailAndPassword,signInWithEmailAndPassword,updateProfile ,sendEmailVerification,signOut,onAuthStateChanged} from "firebase/auth";
+
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
 
@@ -56,6 +58,7 @@ const actionCodeSettings = {
 export const check_mail= async ()=>{
     return  sendEmailVerification(auth.currentUser)
 }
+
 export const addUserListener =(dispatch)=>{
     onAuthStateChanged(auth, (user) => {
         if (user) {
@@ -80,6 +83,7 @@ export const addUserListener =(dispatch)=>{
     });
 
 }
+
 
 export const signout=async (dispatch)=>{
     await signOut(auth).then(() => {
