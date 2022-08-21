@@ -18,8 +18,9 @@
     transition: all .2s ease-in-out;
     transform: skewY(-1deg);
     margin-top: 20px;
-    font-family: "Pacifico",Serif;
+    font-family: "Pacifico",sans-serif;
     letter-spacing: 3px;
+    overflow: hidden;
 }
 .profile-container h3 {
     font-size: 2.8vw ;

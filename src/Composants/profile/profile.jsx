@@ -2,19 +2,40 @@
 import userAvatar  from "../../images/avatar.png"
 
 import "./profile.css";
-import {useSelector} from "react-redux";
-import {Redirect} from "react-router-dom";
+import {useDispatch, useSelector} from "react-redux";
+import {Redirect, useHistory} from "react-router-dom";
+import {check_mail, signout} from "../../firebase/firebaseApp";
+
+
 const Profile = ()=>{
 
     const user_state = useSelector(state=> state.userReducer.user)
-    if(!  user_state ) return <Redirect to={"/"}/> 
+    const email_verified = user_state?.fb_info.emailVerified
+    const history = useHistory();
+    const dispatch  = useDispatch()
+    if(!  user_state ) return <Redirect to={"/"}/>
+    const handleMailCheck =async ()=>{
+        await check_mail(user_state.fb_info.email).then(()=>{
+            alert("email sent relogning is required...")
+        })
+        await signout(dispatch)
+        history.push("/");
+
+    }
+    const handlPrint =()=>{
+        console.log(user_state)
+    }
     return(
         <div className={"container profile-container"}>
             <div className={"header"}>
             <h3>Mon Profile </h3>
 
             </div>
-            <img src={userAvatar} alt="Avatar" className="avatar" />
+            <img onClick={handlPrint} src={userAvatar} alt="Avatar" className="avatar" />
+            <br/>
+            { email_verified || <button onClick={handleMailCheck}
+                     className={"btn btn-outline-error btn-lg me-3 mt-2 shadow-lg button-nav"}>
+                Confirmer votre adresse e-mail </button>}
         <div className={"container infos "}>
               <form className={" form_custom"}>
                   <label htmlFor={"nom"}> Nom :</label>

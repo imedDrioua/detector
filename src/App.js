@@ -10,6 +10,7 @@ import ColorDetector from "./Composants/colorDetector/colorDetector";
 import Navigation from "./Composants/navigation/nav";
 import Profile from "./Composants/profile/profile";
 import {Loading} from "./Composants/loader/Loading";
+import {addUserListener} from "./firebase/firebaseApp";
 
 function App() {
     const dispatch = useDispatch();
@@ -31,6 +32,7 @@ function App() {
     useEffect(()=>{
         window.addEventListener('online',handleInsternetStateActive)
         window.addEventListener('offline',handleInsternetStateDesActive)
+        addUserListener(dispatch)
         return function (){
             window.removeEventListener('online',handleInsternetStateActive)
             window.removeEventListener('offline',handleInsternetStateDesActive)
