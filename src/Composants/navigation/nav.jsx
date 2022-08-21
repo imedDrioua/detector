@@ -4,24 +4,14 @@ import {useDispatch,useSelector} from "react-redux";
 import {useHistory,useLocation}  from "react-router-dom"
 import userAvatar from '../../images/user.png';
 import Menu from "../menu/menu";
+import {signout} from "../../firebase/firebaseApp";
 function Navigation (){
     const dispatch = useDispatch();
     const history = useHistory();
     const location = useLocation();
     const user = useSelector(state => state.userReducer.user)
-    const deconnecter = ()=>{
-        dispatch({
-            type : "ADD_USER",
-            payload :null
-        });
-        dispatch({
-            type : "AUTH_USER",
-            payload : false
-        })
-        dispatch({
-            type :"SET_BACKGROUND",
-            payload : null
-        })
+    const deconnecter = async ()=>{
+        await signout(dispatch)
         if(clicked) hideUser();
         history.push("/");
 
