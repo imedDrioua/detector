@@ -2,7 +2,9 @@
 import { initializeApp } from "firebase/app";
 import { getFirestore,doc ,setDoc, Timestamp,getDoc } from "firebase/firestore";
 
-import { getAuth, createUserWithEmailAndPassword,signInWithEmailAndPassword,updateProfile ,sendEmailVerification,signOut} from "firebase/auth";
+
+import { getAuth, createUserWithEmailAndPassword,signInWithEmailAndPassword,updateProfile ,sendEmailVerification,signOut,onAuthStateChanged} from "firebase/auth";
+
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
 
@@ -37,25 +39,35 @@ export const sigin_fr =  async (email,password)  => {
    return user.user
 }
 
-const actionCodeSettings = {
-    // URL you want to redirect back to. The domain (www.example.com) for this
-    // URL must be in the authorized domains list in the Firebase Console.
-    url: 'https://google.com',
-    // This must be true.
-    handleCodeInApp: true,
-    iOS: {
-        bundleId: 'com.example.ios'
-    },
-    android: {
-        packageName: 'com.example.android',
-        installApp: true,
-        minimumVersion: '12'
-    },
-    dynamicLinkDomain: 'https://www.google.com'
-};
 export const check_mail= async ()=>{
     return  sendEmailVerification(auth.currentUser)
 }
+
+export const addUserListener =(dispatch)=>{
+    onAuthStateChanged(auth, (user) => {
+        if (user) {
+            // User is signed in, see docs for a list of available properties
+            // https://firebase.google.com/docs/reference/js/firebase.User
+            const uid = user.uid;
+            // ...
+        } else {
+            dispatch({
+                type : "ADD_USER",
+                payload :null
+            });
+            dispatch({
+                type : "AUTH_USER",
+                payload : false
+            })
+            dispatch({
+                type :"SET_BACKGROUND",
+                payload : null
+            })
+        }
+    });
+
+}
+
 
 export const signout=async (dispatch)=>{
     await signOut(auth).then(() => {
