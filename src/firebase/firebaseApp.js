@@ -55,7 +55,7 @@ export const createUserProfile = async (nom , prenom, date, refrence,telephone )
 }
 
 export const getProfile = async (uid)=>{
-    const docRef = doc(db,"user",uid)
+    const docRef = doc(db,"users",uid)
     const snaphot = await getDoc(docRef)
 
     if(snaphot.exists()){

@@ -16,7 +16,7 @@ function  Dashboard () {
         return <Loading />
     }else
       return(
-            <div>
+
             <div className={"dashboard"}>
                 <h2 className={"dash-title "}>Qu'est ce qu'on a ?</h2>
                 <div className="row g-2 justify-content-center elements">
@@ -25,7 +25,7 @@ function  Dashboard () {
                <TopicCard direction={2}/>
             </div>
             </div>
-            </div>
+
         )
 
 }
