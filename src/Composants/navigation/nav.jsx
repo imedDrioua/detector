@@ -10,8 +10,10 @@ function Navigation (){
     const history = useHistory();
     const location = useLocation();
     const user = useSelector(state => state.userReducer.user)
+
     const deconnecter = async ()=>{
         await signout(dispatch)
+
         if(clicked) hideUser();
         history.push("/");
 
