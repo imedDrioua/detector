@@ -14,6 +14,7 @@ function Navigation (){
     const deconnecter = async ()=>{
         await signout(dispatch)
 
+
         if(clicked) hideUser();
         history.push("/");
 
