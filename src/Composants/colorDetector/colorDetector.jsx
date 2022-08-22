@@ -20,6 +20,11 @@ class ColorDetector extends Component {
         }
 
     }
+    componentWillUnmount() {
+        const {setBackground} = this.props;
+        setBackground( "linear-gradient(to right top, #051937, #051937, #051937, #051937, #051937)")
+    }
+
     componentDidMount() {
         const {user,history} = this.props;
         if(!user) history.push("/");
@@ -84,6 +89,7 @@ const mapStateToProps = (state)=>{
 const mapDispatchToProps = (dispatch)=>{
     return {
         setBackground :(background) => dispatch({type : "SET_BACKGROUND",payload : background})
+
     }
 }
 const app = new Clarifai.App({
