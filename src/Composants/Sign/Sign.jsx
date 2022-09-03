@@ -60,6 +60,8 @@ function Sign({up}){
     }
     const signin= async (event) => {
         event.preventDefault();
+        setError(false)
+        setFound(true)
         let user
         try {
          user = await  sigin_fr(email, password);

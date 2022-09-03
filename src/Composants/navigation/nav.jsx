@@ -20,6 +20,7 @@ function Navigation (){
 
     }
     const connecter = ()=>{
+
         history.push("/");
     }
     const dashboard = ()=>{
